@@ -1,4 +1,4 @@
-from random import choice
+from random import sample
 
 from flask import Flask, render_template, request
 
@@ -32,11 +32,11 @@ def greet_person():
 
     player = request.args.get("person")
 
-    compliment = choice(AWESOMENESS)
+    compliments = sample(AWESOMENESS, 3)
 
     return render_template("compliment.html",
                            person=player,
-                           compliment=compliment)
+                           compliments=compliments)
 
 
 @app.route('/game')
@@ -54,7 +54,7 @@ def show_madlib_form():
 
 @app.route('/madlib')
 def show_madlib():
-    """renders template madlib.html, filling in info provided by user into a 
+    """renders template madlib.html, filling in info provided by user into a
     MadLibs-style story.
     """
     person = request.args.get("person")

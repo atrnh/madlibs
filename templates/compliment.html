@@ -3,7 +3,12 @@
 {% block title %}A Compliment{% endblock %}
 
 {% block content %}
-  Hi {{ person }}! I think you're {{ compliment }}! <br>
+  Hi {{ person }}! I think you're
+  <ul>
+  {% for compliment in compliments %}
+    <li>{{ compliment }}</li>
+  {% endfor %}
+  </ul>
     <form action="/game">
       Do you want to play a game? <br>
       <input type="radio" name="wantstoplay" value="yes">Yes
