@@ -1,4 +1,4 @@
-from random import sample
+from random import sample, randint
 
 from flask import Flask, render_template, request
 
@@ -32,7 +32,9 @@ def greet_person():
 
     player = request.args.get("person")
 
-    compliments = sample(AWESOMENESS, 3)
+    num_of_compliments = randint(1, len(AWESOMENESS))
+
+    compliments = sample(AWESOMENESS, num_of_compliments)
 
     return render_template("compliment.html",
                            person=player,

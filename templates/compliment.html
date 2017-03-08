@@ -1,14 +1,20 @@
+
+
 {% extends 'base.html' %}
 
 {% block title %}A Compliment{% endblock %}
 
 {% block content %}
-  Hi {{ person }}! I think you're
-  <ul>
-  {% for compliment in compliments %}
-    <li>{{ compliment }}</li>
-  {% endfor %}
-  </ul>
+  Hi {{ person }}! I think you're 
+  {% if compliments|length == 1 %}
+    {{ compliments[0] }}
+  {% else %}
+    {% for compliment in compliments[:-1] %}
+      {{ compliment }}, 
+    {% endfor %}
+
+    and {{ compliments|last }}.
+  {% endif %}
     <form action="/game">
       Do you want to play a game? <br>
       <input type="radio" name="wantstoplay" value="yes">Yes
