@@ -52,6 +52,23 @@ def show_madlib_form():
         return render_template("game.html")
 
 
+@app.route('/madlib')
+def show_madlib():
+    """renders template madlib.html, filling in info provided by user into a 
+    MadLibs-style story.
+    """
+    person = request.args.get("person")
+    color = request.args.get("color")
+    noun = request.args.get("noun")
+    adjective = request.args.get("adjective")
+
+    return render_template("madlib.html",
+                           person=person,
+                           color=color,
+                           noun=noun,
+                           adjective=adjective)
+
+
 if __name__ == '__main__':
     # debug=True gives us error messages in the browser and also "reloads" our web app
     # if we change the code.
